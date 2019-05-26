@@ -28,7 +28,6 @@
 (if window-system (progn
   (setq initial-frame-alist '((width . 120) (height . 60)))
   (set-background-color "RoyalBlue4")
-  ;;(set-foreground-color "LightGray")
   (set-foreground-color "WhiteSmoke")
   (set-cursor-color "Gray")
 ))
@@ -43,9 +42,9 @@
 (global-set-key "\M-n" 'linum-mode)
 
 ;; 改行コードを表示する
-;(setq eol-mnemonic-dos "(CRLF)")
-;(setq eol-mnemonic-mac "(CR)")
-;(setq eol-mnemonic-unix "(LF)")
+(setq eol-mnemonic-dos "(CRLF)")
+(setq eol-mnemonic-mac "(CR)")
+(setq eol-mnemonic-unix "(LF)")
 
 ;; カーソル行をハイライトする
 ;(global-hl-line-mode t)
