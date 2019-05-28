@@ -73,7 +73,6 @@
 ; 全自動インデントを無効
 (setq c-auto-newline nil)
 
-
 ;; Command-Key and Option-Key for Emacs23
 (when (equal system-type 'darwin)
   (setq ns-command-modifier (quote meta))
@@ -119,7 +118,6 @@
 ;; End/Home
 (global-set-key [home] 'beginning-of-line)
 (global-set-key [end] 'end-of-line)
-
 
 ;; M-x term用
 (setq file-name-coding-system 'utf-8)
@@ -177,17 +175,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font
-;(when (equal system-type 'darwin)
-;(when window-system
-;  (create-fontset-from-ascii-font "Menlo-12:weight=normal:slant=normal" nil "menlokakugo")
-;  (set-fontset-font "fontset-menlokakugo"
-;		    'unicode
-;		    (font-spec :family "Hiragino Kaku Gothic ProN" :size 14)
-;		    nil
-;		    'append)
-;  (add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
-;)
-;)
+(when (equal system-type 'darwin)
+  (when window-system
+    (create-fontset-from-ascii-font "Menlo-12:weight=normal:slant=normal" nil "menlokakugo")
+    (set-fontset-font "fontset-menlokakugo"
+		    'unicode
+		    (font-spec :family "Hiragino Kaku Gothic ProN" :size 12)
+		    nil
+		    'append)
+    (add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
+  )
+)
+
 (when (equal system-type 'gnu/linux)
   (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
   (add-to-list 'face-font-rescale-alist '(".*TakaoP.*" . 0.95))
