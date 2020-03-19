@@ -248,7 +248,7 @@
 (when (equal system-type 'darwin)     ;; for Mac only
   (setq dvi2-command "/usr/bin/open -a Skim"); Skimで開く
   (setq tex-pdfview-command "/usr/bin/open -a Skim"))
-(setq tex-command "platex")
+(setq tex-command "uplatex")
 (setq dviprint-command-format "dvipdfmx")
 (setq YaTeX-dvipdf-command "dvipdfmx")
 
@@ -303,31 +303,3 @@
 (add-hook 'yatex-mode-hook
           '(lambda ()
              (define-key YaTeX-mode-map (kbd "C-c s") 'skim-forward-search)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Twitter settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;
-;; twittering-mode
-(add-to-list 'load-path "~/.emacs.d/site-lisp/twittering-mode")
-(require 'twittering-mode)
-(setq twittering-use-master-password t)
-(setq twittering-status-format "%i %s \t: %T %r%R [%C{%Y-%m-%d %H:%M:%S}]")
-;;(setq twittering-status-format "%i %s\n%T\n\t%C{%Y-%m-%d %H:%M:%S} [%f] %r%R\n")
-;; %s - screen_name
-;; %S - name
-;; %i - profile_image
-;; %d - description
-;; %l - location
-;; %L - " [location]"
-;; %u - url
-;; %j - user.id
-;; %p - protected?
-;; %c - created_at (raw UTC string)
-;; %C{time-format-str} - created_at (formatted with time-format-str)
-;; %@ - X seconds ago
-;; %t - text
-;; %' - truncated
-;; %f - source
-;; %# - id
