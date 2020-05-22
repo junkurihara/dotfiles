@@ -155,7 +155,7 @@
               "/usr/local/bin"
               (expand-file-name "~/bin")
               (expand-file-name "~/.emacs.d/bin")
-              "/usr/local/texlive/2019/bin/x86_64-linux"
+              "/usr/local/texlive/2020/bin/x86_64-linux"
               ))
 ;; PATH と exec-path に同じ物を追加します
 (when (and (file-exists-p dir) (not (member dir exec-path)))
