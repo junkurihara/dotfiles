@@ -8,6 +8,10 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
 
 (setq scroll-step 1)
 
@@ -303,3 +307,51 @@
 (add-hook 'yatex-mode-hook
           '(lambda ()
              (define-key YaTeX-mode-map (kbd "C-c s") 'skim-forward-search)))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(hl-todo)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; hl-todo
+;;; キーワードの色を設定する
+;;; ただし、hl-todo.elを読み込む前あるいはcustomizeで設定すること
+(setq hl-todo-keyword-faces
+  '(("HOLD" . "#d0bf8f")
+    ("TODO" . hl-todo-TODO)
+    ("NEXT" . "#dca3a3")
+    ("THEM" . "#dc8cc3")
+    ("PROG" . "#7cb8bb")
+    ("OKAY" . "#7cb8bb")
+    ("DONT" . "#5f7f5f")
+    ("FAIL" . "#8c5353")
+    ("DONE" . "#afd8af")
+    ("FIXME" . hl-todo-FIXME)
+    ("XXX"   . "#cc9393")
+    ("XXXX"  . "#cc9393")
+    ("???"   . "#cc9393")))
+;;;バックグラウンドカラーも変更
+(defface hl-todo-TODO
+  '((t :background "#f0ffd0" :foreground "#ff0000" :inherit (hl-todo)))
+  "Face for highlighting the HOLD keyword.")
+(defface hl-todo-FIXME
+  '((t :background "#f0ffd0" :foreground "#cc9393" :inherit (hl-todo)))
+  "Face for highlighting the HOLD keyword.")
+;;; global-hl-todo-modeで有効にするメジャーモード(derived-mode)
+(setq hl-todo-activate-in-modes
+      '(yatex-mode
+	prog-mode
+	python-mode
+	ruby-mode
+	enh-ruby-mode
+	))
+(global-hl-todo-mode 1)
