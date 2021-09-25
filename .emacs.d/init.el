@@ -159,7 +159,7 @@
               "/usr/local/bin"
               (expand-file-name "~/bin")
               (expand-file-name "~/.emacs.d/bin")
-              "/usr/local/texlive/2020/bin/x86_64-linux"
+              "/usr/local/texlive/2021/bin/x86_64-linux"
               ))
 ;; PATH と exec-path に同じ物を追加します
 (when (and (file-exists-p dir) (not (member dir exec-path)))
@@ -269,12 +269,20 @@
 
 
 ;; reftex
-(add-hook 'yatex-mode-hook '(lambda () (reftex-mode t)))
+;(add-hook 'yatex-mode-hook '(lambda () (reftex-mode t)))
+(add-hook 'yatex-mode-hook 'turn-on-reftex)
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+               (setq enable-local-variables t)))
 ;; So that RefTeX also recognizes \addbibresource. Note that you
 ;; can't use $HOME in path for \addbibresource but that "~"
 ;; works.
 (setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
-
+(setq reftex-use-external-file-finders
+  '(("tex" . "kpsewhich -format=.tex %f")
+    ("bib" . "kpsewhich -format=.bib %f")))
+;(setq-default TeX-master nil)
+;(setq-default tex-main-file nil)
 
 ;;
 ;; Skim との連携
