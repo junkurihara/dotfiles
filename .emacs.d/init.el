@@ -159,6 +159,7 @@
               "/usr/local/bin"
               (expand-file-name "~/bin")
               (expand-file-name "~/.emacs.d/bin")
+              "/opt/homebrew/bin"
               "/usr/local/texlive/2021/bin/x86_64-linux"
               ))
 ;; PATH と exec-path に同じ物を追加します
