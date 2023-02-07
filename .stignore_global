@@ -74,3 +74,13 @@ Default.rdp
 
 // Synology files
 (?d)@eaDir
+
+// node.js
+**/node_modules
+
+// rust
+**/target
+
+// python
+**/venv
+__pycache__
