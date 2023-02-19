@@ -7,11 +7,12 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
 (setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
+      '(("melpa" . "https://melpa.org/packages/")
+        ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
 
 (setq scroll-step 1)
 
@@ -239,7 +240,6 @@
 (string-to-number string base))
 
 ;; yatex
-(add-to-list 'load-path "~/.emacs.d/site-lisp/yatex")
 (setq auto-mode-alist
       (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
       (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
@@ -321,7 +321,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(hl-todo)))
+ '(package-selected-packages '(yatex hl-todo)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

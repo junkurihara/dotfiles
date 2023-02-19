@@ -2,3 +2,6 @@
 thumbs.db
 .emacs.d/*
 !.emacs.d/init.el
+.gnupg/*
+!.gnupg/*.conf*
+*.env

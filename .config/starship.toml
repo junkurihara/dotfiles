@@ -18,6 +18,9 @@ style = "bold #f1fa8c"
 
 [directory]
 style = "bold #50fa7b"
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = '..…/'
 
 [git_branch]
 style = "bold #ff79c6"
