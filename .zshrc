@@ -1,62 +1,17 @@
 #################################
-# Environment specific settings
-#################################
-if [ -f /etc/os-release ]; then
-    # freedesktop.org and systemd
-    . /etc/os-release
-    OS=$NAME
-    VER=$VERSION_ID
-elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-    OS=$(lsb_release -si)
-    VER=$(lsb_release -sr)
-elif [ -f /etc/lsb-release ]; then
-    # For some versions of Debian/Ubuntu without lsb_release command
-    . /etc/lsb-release
-    OS=$DISTRIB_ID
-    VER=$DISTRIB_RELEASE
-else
-    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-    OS=$(uname -s)
-    VER=$(uname -r)
-fi
-
-if [ $OS = "Manjaro Linux" ]; then
-  source ~/.manjaro.zsh
-elif [ $OS = "Darwin" ]; then
-  source ~/.macos.zsh
-else
-  echo "Unsupported OS"
-fi
-
-
-#################################
 # Common settings
 #################################
+# Autoload zsh shell functions defined in the function path
+fpath=( ~/.zsh_autoload_functions "${fpath[@]}" )
 
-######
+autoload -Uz unlock_bw_if_locked load_bw_env
+
 ## Using OpenPGP for SSH via gpg-agent only if GPG card is inserted.
-sshgpg(){
-  if gpg --card-status &>/dev/null; then
-    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command ssh $@
-  else
-    command ssh $@
-  fi
-}
-gitsshgpg(){
-  if gpg --card-status &>/dev/null; then
-    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command git $@
-  else
-    command git $@
-  fi
-}
-
+autoload -Uz sshgpg sshgpg_git
 export GPG_TTY="$(tty)"
 gpgconf --launch gpg-agent
 alias ssh='sshgpg'
-alias git='gitsshgpg'
-
-
+alias git='sshgpg_git'
 
 ######
 ## Customize terminal prompt
@@ -92,3 +47,34 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
+
+#################################
+# Environment specific settings
+#################################
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+
+if [ $OS = "Manjaro Linux" ]; then
+  source ~/.manjaro.zsh
+elif [ $OS = "Darwin" ]; then
+  source ~/.macos.zsh
+else
+  echo "Unsupported OS"
+fi

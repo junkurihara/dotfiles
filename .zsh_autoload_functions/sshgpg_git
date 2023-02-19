@@ -1,0 +1,9 @@
+## Using OpenPGP for SSH via gpg-agent for git command only if GPG card is inserted.
+
+sshgpg_git(){
+  if gpg --card-status &>/dev/null; then
+    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command git $@
+  else
+    command git $@
+  fi
+}

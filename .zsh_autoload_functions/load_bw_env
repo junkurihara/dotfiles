@@ -1,0 +1,6 @@
+# Load note value for a given name (first variable)
+load_bw_env() {
+  unlock_bw_if_locked
+  token="$(bw get notes ${1})"
+  export ${1}=${token}
+}

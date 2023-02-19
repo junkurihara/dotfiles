@@ -1,0 +1,9 @@
+## Using OpenPGP for SSH via gpg-agent only if GPG card is inserted.
+
+sshgpg(){
+  if gpg --card-status &>/dev/null; then
+    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command ssh $@
+  else
+    command ssh $@
+  fi
+}
