@@ -15,7 +15,7 @@ fi
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # set homebrew github api token like 'export HOMEBREW_GITHUB_API_TOKEN="xxxxxxx"'
 # TODO: consider KeepassXC or something like that to store secret tokens
-source .brew_gh_token
+source $HOME/.brew_gh_token
 
 # for Node.js
 export PATH=$HOME/.npm:$PATH

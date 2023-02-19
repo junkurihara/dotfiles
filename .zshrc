@@ -43,10 +43,18 @@ sshgpg(){
     command ssh $@
   fi
 }
+gitsshgpg(){
+  if gpg --card-status &>/dev/null; then
+    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command git $@
+  else
+    command git $@
+  fi
+}
 
 export GPG_TTY="$(tty)"
 gpgconf --launch gpg-agent
 alias ssh='sshgpg'
+alias git='gitsshgpg'
 
 
 
