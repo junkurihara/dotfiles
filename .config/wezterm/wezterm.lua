@@ -1,12 +1,26 @@
 local wezterm = require 'wezterm';
 
 return {
-  initial_rows = 36,
-  initial_cols = 100,
-  font = wezterm.font("Hack Nerd Font Mono"), -- 自分の好きなフォントいれる
-  use_ime = true, -- wezは日本人じゃないのでこれがないとIME動かない
+  initial_rows = 48,
+  initial_cols = 120,
+  window_background_opacity = 0.9,
+
+  font = wezterm.font(
+    "Hack Nerd Font Mono", { weight = "DemiBold", stretch="Normal", style="Normal" }
+  ), 
+  freetype_load_target = "Light",
+  -- freetype_load_flags = "NO_BITMAP",
+  harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
+  warn_about_missing_glyphs = false,
+
+
   font_size = 12.0,
-  color_scheme = "OneHalfDark", -- 自分の好きなテーマ探す https://wezfurlong.org/wezterm/colorschemes/index.html
+  use_ime = true, 
+ 
+  -- color_scheme = "OneHalfDark", -- https://wezfurlong.org/wezterm/colorschemes/index.html
+  color_scheme = "Homebrew",
   hide_tab_bar_if_only_one_tab = true,
+  use_fancy_tab_bar = true,
+  enable_scroll_bar = true,
   adjust_window_size_when_changing_font_size = false,
 }
