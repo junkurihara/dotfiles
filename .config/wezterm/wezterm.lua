@@ -5,12 +5,20 @@ return {
   initial_cols = 120,
   window_background_opacity = 0.95,
 
-  font = wezterm.font(
-    "Hack Nerd Font Mono", { weight = "DemiBold", stretch="Normal", style="Normal" }
-  ), 
+  font = wezterm.font_with_fallback({
+    {
+      family = "Hack Nerd Font Mono",
+      harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
+      weight = "DemiBold", stretch="Normal", style="Normal"
+    },
+    {
+      family = "Hiragino Kaku Gothic Pro",
+      harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
+      weight="DemiBold", stretch="Normal", style="Normal"
+    }
+  }), 
   freetype_load_target = "Light",
   -- freetype_load_flags = "NO_BITMAP",
-  harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   warn_about_missing_glyphs = false,
 
 
