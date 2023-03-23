@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm';
 local keybinds = require 'keybinds';
+local font_settings = require 'font_settings';
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local title = wezterm.truncate_right(utils.basename(tab.active_pane.foreground_process_name), max_width)
@@ -19,18 +20,7 @@ return {
   initial_cols = 120,
   window_background_opacity = 0.95,
 
-  font = wezterm.font_with_fallback({
-    {
-      family = "Hack Nerd Font Mono",
-      harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
-      weight = "DemiBold", stretch="Normal", style="Normal"
-    },
-    {
-      family = "Hiragino Kaku Gothic Pro",
-      harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
-      weight="DemiBold", stretch="Normal", style="Normal"
-    }
-  }), 
+  font = font_settings.font,
   freetype_load_target = "Light",
   -- freetype_load_flags = "NO_BITMAP",
   warn_about_missing_glyphs = false,
@@ -39,7 +29,8 @@ return {
   font_size = 12.0,
   use_ime = true, 
  
-  color_scheme = "Pencil Dark", -- https://wezfurlong.org/wezterm/colorschemes/index.html
+  color_scheme = "Ocean Dark (Gogh)",
+  -- color_scheme = "VSCodeDark+ (Gogh)", -- https://wezfurlong.org/wezterm/colorschemes/index.html
   -- color_scheme = "Homebrew",
   hide_tab_bar_if_only_one_tab = true,
   use_fancy_tab_bar = true,
