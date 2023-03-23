@@ -1,4 +1,18 @@
 local wezterm = require 'wezterm';
+local keybinds = require 'keybinds';
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local title = wezterm.truncate_right(utils.basename(tab.active_pane.foreground_process_name), max_width)
+	if title == "" then
+		title = wezterm.truncate_right(
+			utils.basename(utils.convert_home_dir(tab.active_pane.current_working_dir)),
+			max_width
+		)
+	end
+	return {
+		{ Text = tab.tab_index + 1 .. ":" .. title },
+	}
+end)
 
 return {
   initial_rows = 48,
@@ -34,4 +48,8 @@ return {
 	tab_bar_at_bottom = true,
 	window_close_confirmation = "AlwaysPrompt",
   adjust_window_size_when_changing_font_size = false,
+
+  ----
+  leader = keybinds.leader,
+  keys = keybinds.keys,
 }
