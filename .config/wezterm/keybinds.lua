@@ -4,13 +4,6 @@ local kb = {}
 
 kb.leader = { key = 'q', mods = 'CTRL', timeout_milliseconds = 3000 }
  
--- # Vimのキーバインドでペインを移動する
--- bind h select-pane -L
--- bind j select-pane -D
--- bind k select-pane -U
--- bind l select-pane -R
--- bind -r C-h select-window -t :-
--- bind -r C-l select-window -t :+
 kb.keys = {
   -- tmux key bindings for pane
   {
@@ -42,6 +35,22 @@ kb.keys = {
     key = 'j',
     mods = 'LEADER',
     action = act.ActivatePaneDirection 'Down',
+  },
+  {
+    key = 'H',
+    mods = 'LEADER',
+    action = act.AdjustPaneSize { 'Left', 5 },
+  },
+  {
+    key = 'J',
+    mods = 'LEADER',
+    action = act.AdjustPaneSize { 'Down', 5 },
+  },
+  { key = 'K', mods = 'LEADER', action = act.AdjustPaneSize { 'Up', 5 } },
+  {
+    key = 'L',
+    mods = 'LEADER',
+    action = act.AdjustPaneSize { 'Right', 5 },
   },
 }
 
