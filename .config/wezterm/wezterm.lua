@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm';
 local keybinds = require 'keybinds';
+local theme = require 'theme';
 local font_settings = require 'font_settings';
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
@@ -15,6 +16,17 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
+function scheme_for_appearance(appearance)
+  if appearance:find "Dark" then
+    return "Catppuccin Mocha"
+  else
+    return "Catppuccin Macchiato"
+  end
+  -- color_scheme = "Ocean Dark (Gogh)",
+  -- color_scheme = "VSCodeDark+ (Gogh)", -- https://wezfurlong.org/wezterm/colorschemes/index.html
+  -- color_scheme = "Homebrew",
+end
+
 return {
   initial_rows = 48,
   initial_cols = 120,
@@ -29,9 +41,8 @@ return {
   font_size = 12.0,
   use_ime = true, 
  
-  color_scheme = "Ocean Dark (Gogh)",
-  -- color_scheme = "VSCodeDark+ (Gogh)", -- https://wezfurlong.org/wezterm/colorschemes/index.html
-  -- color_scheme = "Homebrew",
+  color_scheme = theme,
+
   hide_tab_bar_if_only_one_tab = true,
   use_fancy_tab_bar = true,
   enable_scroll_bar = true,
