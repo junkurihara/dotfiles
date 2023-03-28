@@ -16,17 +16,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
-function scheme_for_appearance(appearance)
-  if appearance:find "Dark" then
-    return "Catppuccin Mocha"
-  else
-    return "Catppuccin Macchiato"
-  end
-  -- color_scheme = "Ocean Dark (Gogh)",
-  -- color_scheme = "VSCodeDark+ (Gogh)", -- https://wezfurlong.org/wezterm/colorschemes/index.html
-  -- color_scheme = "Homebrew",
-end
-
 return {
   initial_rows = 48,
   initial_cols = 120,
