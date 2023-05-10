@@ -10,8 +10,9 @@ autoload -Uz unlock_bw_if_locked load_bw_env
 autoload -Uz sshgpg sshgpg_git
 export GPG_TTY="$(tty)"
 gpgconf --launch gpg-agent
-alias ssh='sshgpg'
-alias git='sshgpg_git'
+alias ssh='sshgpg ssh'
+alias git='sshgpg git'
+alias sftp='sshgpg sftp'
 
 ######
 ## Customize terminal prompt

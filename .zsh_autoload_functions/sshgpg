@@ -2,8 +2,8 @@
 
 sshgpg(){
   if gpg --card-status &>/dev/null; then
-    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command ssh $@
+    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) command $@
   else
-    command ssh $@
+    command $@
   fi
 }
