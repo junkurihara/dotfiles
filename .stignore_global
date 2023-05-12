@@ -83,4 +83,5 @@ Default.rdp
 
 // python
 **/venv
+**/.venv
 __pycache__
