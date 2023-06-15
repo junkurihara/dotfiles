@@ -17,7 +17,7 @@ if wezterm.target_triple == 'x86_64-apple-darwin' or wezterm.target_triple == 'a
 elseif wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
   fs.font = wezterm.font_with_fallback({
     {
-      family = "NotoSansMono Nerd Font Mono",
+      family = "NotoSansM Nerd Font Mono",
       harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
       weight = "DemiBold", stretch="Normal", style="Normal"
     },
