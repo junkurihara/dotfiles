@@ -85,3 +85,6 @@ Default.rdp
 **/venv
 **/.venv
 __pycache__
+
+# vaultwarden icons.rs
+!icons.rs
