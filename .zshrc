@@ -37,8 +37,8 @@ fi
 
 ######
 ## Customize some commands
-if type lsd &>/dev/null; then
-  alias ls='lsd'
+if type eza &>/dev/null; then
+  alias ls='eza --icons'
   export LS_COLORS='di=01;36:ln=01;35:so=32:pi=33:ex=04;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:st=30;42:tw=30;43'
 else
   alias ls='ls -G'
