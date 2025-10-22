@@ -93,3 +93,18 @@ elif [ $OS = "Darwin" ]; then
 else
   echo "Unsupported OS"
 fi
+
+# Wasmer
+export WASMER_DIR="/Users/jun/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jun/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# To install npm locally
+export PATH=~/.npm-global/bin:$PATH
