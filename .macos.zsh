@@ -64,6 +64,11 @@ if type tlmgr &>/dev/null; then
   alias texing="sudo tlmgr update --reinstall-forcibly-removed --self --all"
 fi
 
+## for lmstudio
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+
 ######
 ## Work around
 if type brew &>/dev/null; then
