@@ -5,5 +5,7 @@ emacs/.emacs.d/*
 gnupg/.gnupg/*
 !gnupg/.gnupg/*.conf*
 *.env
-.claude
+.claude/*
+!claude/.claude/.settings.json
+!claude/.claude/CLAUDE.md
 .obsolete
