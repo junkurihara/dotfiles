@@ -1,7 +1,5 @@
 # dotfiles
 
-![Test](https://github.com/jun/dotfiles_public/workflows/Test%20dotlink.sh/badge.svg)
-
 My dot files for Linux and macOS
 
 ## dotlink.sh
@@ -12,6 +10,8 @@ A GNU Stow-style symlink installer for managing dotfiles.
 
 - Package-based management
 - Platform-specific support (macOS/Linux)
+  - `<package>-macos` and `<package>-linux` suffixes
+  - `<package>` for common files
 - Safe unlinking (only removes links created by this script)
 - Empty directory cleanup option
 - Dry-run mode
