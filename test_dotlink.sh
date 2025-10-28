@@ -115,7 +115,7 @@ test_basic_linking() {
 
   # Run dotlink
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --verbose --target "$HOME_DIR" testpkg
 
   # Verify
   assert_true "[ -L '$HOME_DIR/.config/test/config.txt' ]" "Symlink should be created"
@@ -136,10 +136,10 @@ test_unlink_without_cleanup() {
   mkdir -p "$REPO_DIR/testpkg/.config/test"
   echo "test content" > "$REPO_DIR/testpkg/.config/test/config.txt"
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Unlink
-  bash ./dotlink.sh --unlink --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --unlink --target "$HOME_DIR" testpkg
 
   # Verify
   assert_false "[ -L '$HOME_DIR/.config/test/config.txt' ]" "Symlink should be removed"
@@ -159,10 +159,10 @@ test_unlink_with_cleanup() {
   mkdir -p "$REPO_DIR/testpkg/.config/test"
   echo "test content" > "$REPO_DIR/testpkg/.config/test/config.txt"
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Unlink with cleanup
-  bash ./dotlink.sh --unlink --cleanup-empty-dirs --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --unlink --cleanup-empty-dirs --target "$HOME_DIR" testpkg
 
   # Verify
   assert_false "[ -L '$HOME_DIR/.config/test/config.txt' ]" "Symlink should be removed"
@@ -195,7 +195,7 @@ test_platform_specific() {
 
   # Run dotlink
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Verify
   assert_true "[ -L '$HOME_DIR/.config/base.txt' ]" "Base package file should be linked"
@@ -218,7 +218,7 @@ test_nested_directories() {
 
   # Run dotlink
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Verify
   assert_true "[ -L '$HOME_DIR/.config/nvim/init.lua' ]" "Root file should be linked"
@@ -241,13 +241,13 @@ test_partial_cleanup() {
 
   # Link
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Manually remove one symlink to simulate partial removal
   rm "$HOME_DIR/.config/test/config2.txt"
 
   # Unlink with cleanup
-  bash ./dotlink.sh --unlink --cleanup-empty-dirs --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --unlink --cleanup-empty-dirs --target "$HOME_DIR" testpkg
 
   # Verify
   assert_false "[ -L '$HOME_DIR/.config/test/config1.txt' ]" "First symlink should be removed"
@@ -273,7 +273,7 @@ test_ignore_patterns() {
 
   # Run dotlink
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Verify
   assert_true "[ -L '$HOME_DIR/.config/config.txt' ]" "Regular file should be linked"
@@ -296,7 +296,7 @@ test_dry_run() {
 
   # Run in dry-run mode
   cd "$REPO_DIR"
-  bash ./dotlink.sh --dry-run --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --dry-run --target "$HOME_DIR" testpkg
 
   # Verify nothing was created
   assert_false "[ -e '$HOME_DIR/.config' ]" "No files should be created in dry-run mode"
@@ -320,7 +320,7 @@ test_backup() {
 
   # Run with backup
   cd "$REPO_DIR"
-  bash ./dotlink.sh --backup --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --backup --target "$HOME_DIR" testpkg
 
   # Verify
   assert_true "[ -L '$HOME_DIR/.config/config.txt' ]" "File should be a symlink now"
@@ -346,8 +346,8 @@ test_preserve_other_symlinks() {
 
   # Link and then unlink
   cd "$REPO_DIR"
-  bash ./dotlink.sh --target "$HOME_DIR" testpkg
-  bash ./dotlink.sh --unlink --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --unlink --target "$HOME_DIR" testpkg
 
   # Verify
   assert_false "[ -L '$HOME_DIR/.config/config.txt' ]" "Our symlink should be removed"

@@ -91,7 +91,7 @@ should_prune() {
   for pat in "${IGNORES[@]}"; do
     # シェルグロブで判定（find の -name 相当）
     case "$rel" in
-      */$pat|$pat) return 0 ;;
+      */$pat|$pat|*/$pat/*|$pat/*) return 0 ;;
     esac
   done
   return 1
@@ -203,20 +203,20 @@ for pkg in "${ARGS[@]}"; do
   done < <(packages_to_dirs "$pkg") || exit 1
   for d in "${dirs[@]}"; do
     log "processing package: $d"
-    (
-      cd "${REPO}/${d}"
 
-      # find: ファイルとシンボリックリンクを対象（ディレクトリは作成のみ）
-      while IFS= read -r -d '' path; do
-        rel="${path#./}"                               # パッケージ直下からの相対
-        if should_prune "$rel"; then
-          log "prune: $rel"
-          continue
-        fi
-        src="${REPO}/${d}/${rel}"
-        dst="${TARGET}/${rel}"
-        process_one "$src" "$rel" "$dst"
-      done < <(find . -mindepth 1 \( -type f -o -type l \) -print0)
-    )
+    # find: ファイルとシンボリックリンクを対象（ディレクトリは作成のみ）
+    while IFS= read -r -d '' full_path; do
+      # パッケージディレクトリからの相対パスを取得
+      rel="${full_path#${REPO}/${d}/}"
+
+      if should_prune "$rel"; then
+        log "prune: $rel"
+        continue
+      fi
+
+      src="${REPO}/${d}/${rel}"
+      dst="${TARGET}/${rel}"
+      process_one "$src" "$rel" "$dst"
+    done < <(find "${REPO}/${d}" -mindepth 1 \( -type f -o -type l \) -print0)
   done
 done
