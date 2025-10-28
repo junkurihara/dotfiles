@@ -209,7 +209,7 @@ for pkg in "${ARGS[@]}"; do
     # find: ファイルとシンボリックリンクを対象（ディレクトリは作成のみ）
     while IFS= read -r -d '' full_path; do
       # パッケージディレクトリからの相対パスを取得
-      rel="${full_path#${REPO}/${d}/}"
+      rel="${full_path#"${REPO}"/"${d}"/}"
 
       if should_prune "$rel"; then
         log "prune: $rel"
