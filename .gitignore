@@ -1,8 +1,9 @@
 .DS_Store
 thumbs.db
-.emacs.d/*
-!.emacs.d/init.el
-.gnupg/*
-!.gnupg/*.conf*
+emacs/.emacs.d/*
+!emacs/.emacs.d/init.el
+gnupg/.gnupg/*
+!gnupg/.gnupg/*.conf*
 *.env
 .claude
+.obsolete
