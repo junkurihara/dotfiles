@@ -13,7 +13,7 @@ setopt INC_APPEND_HISTORY
 #save only one command if 2 common are same and consistent
 setopt HIST_IGNORE_DUPS
 #add timestamp for each entry
-setopt EXTENDED_HISTORY   
+setopt EXTENDED_HISTORY
 
 # Autoload zsh shell functions defined in the function path
 fpath=( ~/.zsh_autoload_functions "${fpath[@]}" )
@@ -62,6 +62,12 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
+
+######
+## if rclone is installed, always use --exclude-from ~/.rclone_exclusion.txt
+if type rclone &>/dev/null; then
+  alias rclone='rclone --exclude-from ~/.rclone_exclusion.txt'
+fi
 
 #################################
 # Environment specific settings

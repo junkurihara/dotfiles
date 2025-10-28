@@ -1,0 +1,17 @@
+.DS_Store
+.localized
+.stignore
+desktop.ini
+Desktop.ini
+@eaDir/**
+Thumbs.db
+.SynologyWorkingDirectory/**
+\#recycle/**
+$Recycle.Bin/**
+*sharebin
+*SynologyCloudSync
+cloudsync_encrypt.info
+*SynoEAStream
+*SynoResource
+._*
+Icon?

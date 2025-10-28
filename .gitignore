@@ -9,3 +9,8 @@ gnupg/.gnupg/*
 !claude/.claude/.settings.json
 !claude/.claude/CLAUDE.md
 .obsolete
+rclone/*
+!rclone/.rclone_exclusion.txt
+.gitconfig
+.npmrc
+.rsign
