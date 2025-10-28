@@ -11,6 +11,8 @@ gnupg/.gnupg/*
 .obsolete
 rclone/*
 !rclone/.rclone_exclusion.txt
+rclone.conf
 .gitconfig
 .npmrc
-.rsign
+.rsign/*
+.ssh/*
