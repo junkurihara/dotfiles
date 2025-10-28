@@ -27,10 +27,15 @@ CLEANUP_EMPTY_DIRS=0   # unlink 時に空のディレクトリを削除する場
 IGNORES=(
   ".git"
   ".github"
+  ".gitignore"
   ".stow-local-ignore"
   ".DS_Store"
+  "._*"  # macOSのリソースフォーク
   "README*"
   "LICENSE*"
+  "dotlink.sh"
+  "test_dotlink.sh"
+  "*.bak.*"  # バックアップファイル
 )
 
 usage() {

@@ -1,5 +1,7 @@
 # dotfiles
 
+![Test](https://github.com/junkurihara/dotfiles/workflows/Test%20dotlink.sh/badge.svg)
+
 My dot files for Linux and macOS
 
 ## dotlink.sh
