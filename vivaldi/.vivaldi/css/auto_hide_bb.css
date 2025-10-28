@@ -1,3 +1,0 @@
-/* Automate SD Bookmarks Bar */
-#browser:not(:has(.startpage)) .bookmark-bar:not(:focus-within) {max-height: 0; overflow: hidden; border:0; z-index:1;}
-
