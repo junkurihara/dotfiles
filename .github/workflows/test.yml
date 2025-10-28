@@ -1,0 +1,79 @@
+name: Test dotlink.sh
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - feature/**
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-macos:
+    name: Test on macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: |
+          chmod +x dotlink.sh
+          chmod +x test_dotlink.sh
+
+      - name: Run tests
+        run: ./test_dotlink.sh
+
+  test-linux:
+    name: Test on Linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: |
+          chmod +x dotlink.sh
+          chmod +x test_dotlink.sh
+
+      - name: Run tests
+        run: ./test_dotlink.sh
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck on dotlink.sh
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          severity: warning
+          additional_files: 'dotlink.sh test_dotlink.sh'
+
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [test-macos, test-linux, shellcheck]
+    if: always()
+
+    steps:
+      - name: Check test results
+        run: |
+          if [ "${{ needs.test-macos.result }}" != "success" ] || \
+             [ "${{ needs.test-linux.result }}" != "success" ] || \
+             [ "${{ needs.shellcheck.result }}" != "success" ]; then
+            echo "Some tests failed!"
+            exit 1
+          else
+            echo "All tests passed!"
+          fi
