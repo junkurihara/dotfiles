@@ -115,12 +115,13 @@ test_basic_linking() {
 
   # Run dotlink
   cd "$REPO_DIR"
-  bash ./dotlink.sh --verbose --verbose --target "$HOME_DIR" testpkg
+  bash ./dotlink.sh --verbose --target "$HOME_DIR" testpkg
 
   # Verify
   assert_true "[ -L '$HOME_DIR/.config/test/config.txt' ]" "Symlink should be created"
   local expected_target="$REPO_DIR/testpkg/.config/test/config.txt"
-  local actual_target="$(readlink "$HOME_DIR/.config/test/config.txt" || echo "")"
+  local actual_target
+  actual_target="$(readlink "$HOME_DIR/.config/test/config.txt" || echo "")"
   assert_eq "$expected_target" "$actual_target" "Symlink should point to correct location"
 
   cleanup_test_env

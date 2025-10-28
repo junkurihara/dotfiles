@@ -54,11 +54,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run ShellCheck on dotlink.sh
-        uses: ludeeus/action-shellcheck@master
-        with:
-          scandir: '.'
-          severity: warning
-          additional_files: 'dotlink.sh test_dotlink.sh'
+        run: shellcheck -x dotlink.sh
+
+      - name: Run ShellCheck on test_dotlink.sh
+        run: shellcheck -x test_dotlink.sh
 
   test-summary:
     name: Test Summary

@@ -51,7 +51,6 @@ USAGE
 }
 
 log() { [ "$VERBOSE" -eq 1 ] && echo "$@"; }
-act() { [ "$DRY_RUN" -eq 1 ] && echo "(dry-run) $*" || eval "$@"; }
 
 # 引数処理
 ARGS=()
@@ -88,8 +87,10 @@ packages_to_dirs() {
 # 無視判定
 should_prune() {
   local rel="$1"
+  local pat
   for pat in "${IGNORES[@]}"; do
     # シェルグロブで判定（find の -name 相当）
+    # shellcheck disable=SC2254
     case "$rel" in
       */$pat|$pat|*/$pat/*|$pat/*) return 0 ;;
     esac
@@ -176,7 +177,8 @@ process_one() {
   # 既存が実体ファイルで、置換したい場合の退避
   if [ -e "$dst" ] && [ ! -L "$dst" ]; then
     if [ "$BACKUP" -eq 1 ]; then
-      local bak="${dst}.bak.$(date +%Y%m%d%H%M%S)"
+      local bak
+      bak="${dst}.bak.$(date +%Y%m%d%H%M%S)"
       echo "backup: $dst -> $bak"
       if [ "$DRY_RUN" -eq 0 ]; then
         mv -- "$dst" "$bak"
