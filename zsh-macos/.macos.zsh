@@ -12,7 +12,9 @@ if type brew &>/dev/null; then
 fi
 
 # for Homebrew
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+if type brew &>/dev/null; then
+  export PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH
+fi
 # set homebrew github api token like 'export HOMEBREW_GITHUB_API_TOKEN="xxxxxxx"'
 # use osx keychain to handle this.
 # source $HOME/.brew_gh_token
