@@ -45,9 +45,11 @@ export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 #alias wine='LC_ALL="ja_JP" wine'
 
 # for Rust
-source "$HOME/.cargo/env"
-alias cargoup='cargo install-update --all'
-. "$HOME/.cargo/env"
+if type cargo &>/dev/null; then
+  source "$HOME/.cargo/env"
+  alias cargoup='cargo install-update --all'
+  . "$HOME/.cargo/env"
+fi
 
 # for tar
 tgz() {
@@ -65,6 +67,24 @@ fi
 if type tlmgr &>/dev/null; then
   alias texing="sudo tlmgr update --reinstall-forcibly-removed --self --all"
 fi
+
+## for node.js
+if type n &>/dev/null; then
+  alias ning="sudo n latest && sudo n prune"
+fi
+
+## update anything
+dailychore() {
+  echo "[update TeXLive]" && \
+  if type texing &>/dev/null; then texing; fi && \
+  echo "" && echo "[update Node.js]" &&\
+  if type n &>/dev/null; then ning; fi &&\
+  echo "" && echo "[update Homebrew packages]" && \
+  if type brewing &>/dev/null; then brewing; fi && \
+  echo "" && echo "[update Rust]" && \
+  if type cargo &>/dev/null; then rustup update; fi && \
+  if type cargo &>/dev/null; then cargoup; fi
+}
 
 ## for lmstudio
 # Added by LM Studio CLI (lms)

@@ -110,3 +110,8 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 
 # To install npm locally
 export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jun/.lmstudio/bin"
+# End of LM Studio CLI section
+
