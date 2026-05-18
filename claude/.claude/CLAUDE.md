@@ -71,6 +71,10 @@ These rules protect the user's local environment, machine state, and shared/remo
 - **Detailed sub-tasks for each main task must be defined in `.tmp/task.md`**.
 - **You must update `.tmp/task.md` as you make progress on your work.**
 - **Exception for trivial changes:** The `.tmp/design.md` / `.tmp/task.md` workflow is required for non-trivial work only. Single-line fixes, typo corrections, simple Q&A, formatter-only changes, and small configuration tweaks may skip this step.
+- **Check for pre-existing `.tmp/design.md` or `.tmp/task.md` before starting any non-trivial work.** Use the `Bash` tool (the `List` tool may not surface hidden directories). If either file exists:
+  1. **Do not overwrite, modify, or delete them** as a first action. They may represent in-progress work by the user or another agent (e.g. a parallel Claude Code session, a remote agent, or a scheduled routine).
+  2. Read the contents and summarize them to the user in the conversation language: what the design describes, which tasks are checked off, which remain, and the apparent current state.
+  3. Ask the user explicitly how to proceed — for example: continue the existing plan, start a new plan after archiving the old one, or hand off because another agent is still working on it. Wait for the user's instruction before writing to either file.
 
 1.  First, create a plan and document the requirements in `.tmp/design.md`.
 2.  Based on the requirements, identify all necessary tasks and list them in a Markdown file at `.tmp/task.md`.
