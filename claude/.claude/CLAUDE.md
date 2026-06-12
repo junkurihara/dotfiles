@@ -25,7 +25,7 @@ These rules protect the user's local machine, personal environment, and shared/r
 
 ### Git
 
-- **`git` may be aliased or wrapped** in the user's shell. Invoke the absolute path (`/usr/bin/git` or `/opt/homebrew/bin/git`) to guarantee predictable behavior.
+- Use plain `git`. Do not invoke absolute paths (`/usr/bin/git` etc.) and do not go through the user's shell aliases/wrappers (the user's interactive shell wraps `git` for hardware-key signing/authentication, which is reserved for the user's own operations). Permission rules are written against the plain command name; using the plain name keeps them effective.
 - **You do not commit. Committing is the user's job.** Prepare changes, report completion, and wait for the user to review and commit.
 - **Do not run `git commit`, `git push`, or `git push --force`.** These are reserved for the user.
 - **Do not chain git commands with `&&` in a single Bash invocation** (e.g. `git add ... && git commit ...`). Run each git command as a separate invocation so that permission rules apply to each command individually.
