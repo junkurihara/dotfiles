@@ -45,7 +45,7 @@ export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 #alias wine='LC_ALL="ja_JP" wine'
 
 # for Rust
-if type cargo &>/dev/null; then
+if [ -x "${HOME}/.cargo/bin/cargo" ]; then
   source "$HOME/.cargo/env"
   alias cargoup='cargo install-update --all'
   . "$HOME/.cargo/env"
