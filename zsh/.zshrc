@@ -24,9 +24,14 @@ autoload -Uz unlock_bw_if_locked load_bw_env
 autoload -Uz sshgpg sshgpg_git
 export GPG_TTY="$(tty)"
 gpgconf --launch gpg-agent
-alias ssh='sshgpg ssh'
-alias git='sshgpg git'
-alias sftp='sshgpg sftp'
+# aliases via YubiKey (such as gpg-agent SSH socket) 
+# Use plain git/ssh/sftp for Claude Code agent (CLAUDECODE=1), aligned with permission rule (deny pattern 'git')
+if [[ -z "${CLAUDECODE:-}" ]]; then
+  alias git='sshgpg git'
+  alias ssh='sshgpg ssh'
+  alias git='sshgpg git'
+  alias sftp='sshgpg sftp'
+fi
 
 ######
 ## Customize terminal prompt
