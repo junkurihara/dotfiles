@@ -1,8 +1,32 @@
 {
-  "env": {
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
-  },
+  "env": {},
   "permissions": {
+    "allow": [
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "Bash(osascript -e 'display notification:*)",
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git switch -c:*)",
+      "Bash(git stash list:*)",
+      "Bash(git stash show:*)",
+      "Bash(cargo build:*)",
+      "Bash(cargo test:*)",
+      "Bash(cargo fmt:*)",
+      "Bash(cargo clippy:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo run:*)",
+      "Bash(cargo new:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(which:*)"
+    ],
     "deny": [
       "Bash(git commit:*)",
       "Bash(git push:*)",
@@ -37,7 +61,6 @@
       "Bash(defaults write:*)",
       "Bash(launchctl:*)",
       "Bash(nc:*)",
-
       "Bash(cat ~/.claude/*)",
       "Bash(cat *credentials*)",
       "Bash(cat *.env*)",
@@ -47,7 +70,6 @@
       "Bash(grep * ~/.ssh/*)",
       "Bash(security find-generic-password:*)",
       "Bash(security find-internet-password:*)",
-
       "Read(~/.claude/**)",
       "Read(~/.ssh/**)",
       "Read(~/Library/Keychains/**)",
@@ -59,7 +81,6 @@
       "Read(**/credentials*.json)",
       "Read(id_rsa*)",
       "Read(id_ed25519*)",
-
       "Write(~/.claude/**)",
       "Edit(~/.claude/**)",
       "Write(~/.ssh/**)",
@@ -89,32 +110,8 @@
       "Bash(cat:*)",
       "Bash(grep:*)",
       "Bash(find:*)"
-    ],
-    "allow": [
-      "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs",
-      "Bash(osascript -e 'display notification:*)",
-      "Bash(git status)",
-      "Bash(git status:*)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "Bash(git show:*)",
-      "Bash(git add:*)",
-      "Bash(git switch -c:*)",
-      "Bash(git stash list:*)",
-      "Bash(git stash show:*)",
-      "Bash(cargo build:*)",
-      "Bash(cargo test:*)",
-      "Bash(cargo fmt:*)",
-      "Bash(cargo clippy:*)",
-      "Bash(cargo check:*)",
-      "Bash(cargo run:*)",
-      "Bash(cargo new:*)",
-      "Bash(npm run:*)",
-      "Bash(npm test:*)",
-      "Bash(mkdir:*)",
-      "Bash(ls:*)",
-      "Bash(which:*)"
     ]
-  }
+  },
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
