@@ -75,14 +75,16 @@ For non-trivial work, use the repository-local `.tmp/` workflow. Trivial changes
 - Document requirements and design in `<repo>/.tmp/design-codex-<topic>.md`.
 - Track concrete tasks and progress in `<repo>/.tmp/task-<topic>.md`.
 - Keep `.tmp/task-<topic>.md` updated while working.
+- File naming convention: `<topic>` is a short kebab-case summary of the task. Design documents are named per author agent: Codex writes `design-codex-<topic>.md`; other agents such as Claude Code write `design-claude-<topic>.md`. This allows designs for the same topic to coexist and be cross-reviewed without overwriting each other.
+- The task file `task-<topic>.md` is shared per topic regardless of which agent is working. When roles are switched or handed off, continue updating the same task file instead of creating an agent-specific copy.
 - `.tmp/` is working memory and must not be committed.
 - Treat user-provided files under `.tmp/`, such as `.tmp/incoming/`, as read-only inputs unless instructed otherwise.
 
-Before starting non-trivial work, check for existing `.tmp/design-codex-<topic>.md` or `.tmp/task-<topic>.md` using a shell command that can find hidden directories. If either exists:
+Before starting non-trivial work, check for existing `.tmp/design-*.md` or `.tmp/task-*.md` files, including design documents authored by other agents such as `design-claude-<topic>.md`, using a shell command that can find hidden directories. If a file related to your topic exists:
 
-1. Do not overwrite, modify, or delete it as a first action.
+1. Do not overwrite, modify, or delete it as a first action. It may be in-progress work by the user or another agent, such as a Claude Code session that designed the task.
 2. Read it and summarize the current design, completed tasks, remaining tasks, and apparent state to the user.
-3. Ask the user how to proceed and wait for instruction before writing to either file.
+3. Ask the user how to proceed and wait for instruction before writing to either file. Continuing a shared `task-<topic>.md` handed off from another agent is the normal case when switching roles.
 
 For new non-trivial work:
 
