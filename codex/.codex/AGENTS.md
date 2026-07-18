@@ -72,13 +72,13 @@ This is the user's primary local machine, not an isolated sandbox. There may be 
 For non-trivial work, use the repository-local `.tmp/` workflow. Trivial changes such as single-line fixes, typo corrections, formatter-only changes, small configuration tweaks, and simple Q&A may skip it.
 
 - Create `.tmp/` at the root of the repository being worked on, never in a shared parent directory.
-- Document requirements and design in `<repo>/.tmp/design.md`.
-- Track concrete tasks and progress in `<repo>/.tmp/task.md`.
-- Keep `.tmp/task.md` updated while working.
+- Document requirements and design in `<repo>/.tmp/design-codex-<topic>.md`.
+- Track concrete tasks and progress in `<repo>/.tmp/task-<topic>.md`.
+- Keep `.tmp/task-<topic>.md` updated while working.
 - `.tmp/` is working memory and must not be committed.
 - Treat user-provided files under `.tmp/`, such as `.tmp/incoming/`, as read-only inputs unless instructed otherwise.
 
-Before starting non-trivial work, check for existing `.tmp/design.md` or `.tmp/task.md` using a shell command that can find hidden directories. If either exists:
+Before starting non-trivial work, check for existing `.tmp/design-codex-<topic>.md` or `.tmp/task-<topic>.md` using a shell command that can find hidden directories. If either exists:
 
 1. Do not overwrite, modify, or delete it as a first action.
 2. Read it and summarize the current design, completed tasks, remaining tasks, and apparent state to the user.
@@ -86,8 +86,8 @@ Before starting non-trivial work, check for existing `.tmp/design.md` or `.tmp/t
 
 For new non-trivial work:
 
-1. Create a plan in `.tmp/design.md`.
-2. Create a task checklist in `.tmp/task.md`.
+1. Create a plan in `.tmp/design-codex-<topic>.md`.
+2. Create a task checklist in `.tmp/task-<topic>.md`.
 3. Create a new branch before implementation. Branch names should start with `feat/` unless the repository uses another convention.
 4. Break work into small units suitable for review.
 5. Apply the repository's formatter when appropriate.

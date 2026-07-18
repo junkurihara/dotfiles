@@ -79,18 +79,18 @@ These rules protect the user's local machine, personal environment, and shared/r
 ### Development Style
 
 - **The `.tmp/` working directory must be created at the root of the repository you are working on** (e.g. `<repo>/.tmp/`), **never in a shared parent directory**. Each repository has its own independent `.tmp/`; do not read or write the `.tmp/` of a repository you are not working on.
-- **Requirements and design for each task must be documented in `<repo>/.tmp/design.md`.**
-- **Detailed sub-tasks for each main task must be defined in `<repo>/.tmp/task.md`.**
-- **You must update `.tmp/task.md` as you make progress on your work.**
+- **Requirements and design for each task must be documented in `<repo>/.tmp/design-claude-<topic>.md`.**
+- **Detailed sub-tasks for each main task must be defined in `<repo>/.tmp/task-<topic>.md`.**
+- **You must update `.tmp/task-<topic>.md` as you make progress on your work.**
 - The `.tmp/` directory is **git-ignored** and must not be committed; it is working memory, not part of the repository. Externally provided documents (design notes, performance reports) may be placed under `.tmp/` (e.g. `.tmp/incoming/`) by the user; treat them as read-only inputs.
-- **Exception for trivial changes:** The `.tmp/design.md` / `.tmp/task.md` workflow is required for non-trivial work only. Single-line fixes, typo corrections, simple Q&A, formatter-only changes, and small configuration tweaks may skip this step.
-- **Check for a pre-existing `.tmp/design.md` or `.tmp/task.md` in the repository you are working on before starting any non-trivial work.** Use the `Bash` tool (the `List` tool may not surface hidden directories). If either file exists:
+- **Exception for trivial changes:** The `.tmp/design-claude-<topic>.md` / `.tmp/task-<topic>.md` workflow is required for non-trivial work only. Single-line fixes, typo corrections, simple Q&A, formatter-only changes, and small configuration tweaks may skip this step.
+- **Check for a pre-existing `.tmp/design-claude-<topic>.md` or `.tmp/task-<topic>.md` in the repository you are working on before starting any non-trivial work.** Use the `Bash` tool (the `List` tool may not surface hidden directories). If either file exists:
   1. **Do not overwrite, modify, or delete them** as a first action. They may represent in-progress work by the user or another agent (e.g. a parallel Claude Code session working on the same repository, a remote agent, or a scheduled routine).
   2. Read the contents and summarize them to the user in the conversation language: what the design describes, which tasks are checked off, which remain, and the apparent current state.
   3. Ask the user explicitly how to proceed -- for example: continue the existing plan, start a new plan after archiving the old one, or hand off because another agent is still working on it. Wait for the user's instruction before writing to either file.
 
-1.  First, create a plan and document the requirements in `<repo>/.tmp/design.md`.
-2.  Based on the requirements, identify all necessary tasks and list them in `<repo>/.tmp/task.md`.
+1.  First, create a plan and document the requirements in `<repo>/.tmp/design-claude-<topic>.md`.
+2.  Based on the requirements, identify all necessary tasks and list them in `<repo>/.tmp/task-<topic>.md`.
 3.  Once the plan is established, create a new branch and begin your work.
     - Branch names should start with `feat/` followed by a brief summary of the task.
 4.  Break down tasks into small, manageable units that can be completed within a single commit.
